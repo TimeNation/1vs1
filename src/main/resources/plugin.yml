@@ -1,0 +1,12 @@
+name: 1vs1
+version: '${version}'
+main: net.timenation.onevsone.OneVsOne
+api-version: 1.19
+author: ByRaudy
+
+depend:
+  - TimeSpigotAPI
+
+commands:
+  start:
+  unnick:
