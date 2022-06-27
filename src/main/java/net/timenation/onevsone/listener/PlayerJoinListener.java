@@ -24,7 +24,7 @@ public class PlayerJoinListener extends LobbyPhase<OneVsOne> {
 
     @Override
     public void setKitStuff(Player player) {
-        player.getInventory().setItem(2, new ItemManager(Material.BARREL, 1).setDisplayName(I18n.format(player, "game.item.votekit")).build());
+        player.getInventory().setItem(2, new ItemManager(Material.BARREL, 1).setDisplayName(I18n.format(player, "game.item.votekit", OneVsOne.getInstance().getPrefix())).build());
         timeGame.getPlayerKit().put(player, "Voting...");
     }
 
