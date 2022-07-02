@@ -16,6 +16,7 @@ import net.timenation.timespigotapi.manager.game.gamestates.GameState;
 import net.timenation.timespigotapi.manager.game.manager.ConfigManager;
 import net.timenation.timespigotapi.manager.game.modules.ForcemapModule;
 import net.timenation.timespigotapi.manager.game.modules.NickModule;
+import net.timenation.timespigotapi.manager.game.modules.Top3Module;
 import net.timenation.timespigotapi.manager.game.scoreboard.ScoreboardManager;
 import net.timenation.timespigotapi.manager.game.team.TeamManager;
 import net.timenation.timespigotapi.manager.language.I18n;
@@ -54,11 +55,12 @@ public final class OneVsOne extends TimeGame {
         setGameWithKits(true);
         setDefaultGameQuitItem(new DefaultGameQuitItem(this, 7));
 
+        loadMaps("1vs1");
+
         new TrampolineFeature(this);
         new ForcemapModule(this, "1vs1");
+        new Top3Module(this, "1vs1");
         new NickModule(this);
-
-        loadMaps("1vs1");
 
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerJoinListener(this), this);

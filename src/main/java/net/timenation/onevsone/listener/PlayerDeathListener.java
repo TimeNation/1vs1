@@ -11,6 +11,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 public class PlayerDeathListener implements Listener {
 
     @EventHandler
@@ -32,12 +34,15 @@ public class PlayerDeathListener implements Listener {
 
             OneVsOne.getInstance().getScoreboardManager().sendEndScoreboardToPlayer(players, killer);
             OneVsOne.getInstance().getDefaultGameQuitItem().setItem(players);
-            players.sendTitle(I18n.format(players, "game.loose.top"), I18n.format(players, "game.loose.bottom", (Object) TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(killer.getUniqueId()).getPlayersRankAndName(killer.getUniqueId())));
+            players.sendTitle(I18n.format(players, "game.title.loose.top"), I18n.format(players, "game.title.loose.top", (Object) TimeSpigotAPI.getInstance().getRankManager().getPlayersRank(killer.getUniqueId()).getPlayersRankAndName(killer.getUniqueId())));
         });
 
         OneVsOne.getInstance().getCountdownManager().startEndCountdown();
 
-        killer.sendTitle(I18n.format(killer, "game.win.top"), I18n.format(player, "game.win.bottom"));
+        int crystals = ThreadLocalRandom.current().nextInt(50, 75);
+        killer.sendTitle(I18n.format(killer, "game.title.win.top"), I18n.format(player, "game.title.win.top"));
+        killer.sendMessage(I18n.format(killer, OneVsOne.getInstance().getPrefix(), "game.messages.playerhaswongame", crystals));
+        TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(killer).setCrystals(TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(killer).getCrystals() + crystals);
         timeStatsKiller.setKills(timeStatsKiller.getKills() + 1);
         timeStatsKiller.setWins(timeStatsKiller.getWins() + 1);
 
