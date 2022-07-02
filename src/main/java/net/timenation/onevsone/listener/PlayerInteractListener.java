@@ -13,6 +13,8 @@ public class PlayerInteractListener implements Listener {
     public void handlePlayerInteract(PlayerInteractEvent event) {
         Player player = event.getPlayer();
 
+        if(event.getItem() == null || event.getClickedBlock() == null || event.getItem().getItemMeta() == null) return;
+
         if(event.getAction() == Action.RIGHT_CLICK_AIR || event.getAction() == Action.RIGHT_CLICK_BLOCK) {
             switch (event.getItem().getType()) {
                 case BARREL -> OneVsOne.getInstance().getInventoryManager().openVoteKitInventory(player);

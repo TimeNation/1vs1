@@ -57,10 +57,9 @@ public final class OneVsOne extends TimeGame {
 
         loadMaps("1vs1");
 
-        new TrampolineFeature(this);
         new ForcemapModule(this, "1vs1");
-        new Top3Module(this, "1vs1");
         new NickModule(this);
+        new TrampolineFeature(this);
 
         PluginManager pluginManager = getServer().getPluginManager();
         pluginManager.registerEvents(new PlayerJoinListener(this), this);

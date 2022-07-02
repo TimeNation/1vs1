@@ -5,18 +5,22 @@ import net.timenation.timespigotapi.manager.ItemManager;
 import net.timenation.timespigotapi.manager.game.TimeGame;
 import net.timenation.timespigotapi.manager.game.defaultitems.DefaultGameExplainItem;
 import net.timenation.timespigotapi.manager.game.defaultitems.DefaultGameNavigatorItem;
+import net.timenation.timespigotapi.manager.game.modules.Top3Module;
 import net.timenation.timespigotapi.manager.game.phase.LobbyPhase;
 import net.timenation.timespigotapi.manager.language.I18n;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 
 public class PlayerJoinListener extends LobbyPhase<OneVsOne> {
 
     private final TimeGame timeGame;
+    private boolean top3;
 
     public PlayerJoinListener(TimeGame timeGame) {
         super(timeGame, "1vs1");
         this.timeGame = timeGame;
+        this.top3 = false;
 
         new DefaultGameNavigatorItem(timeGame, 1);
         new DefaultGameExplainItem(timeGame, 6, "game.explain.1vs1");
@@ -26,6 +30,11 @@ public class PlayerJoinListener extends LobbyPhase<OneVsOne> {
     public void setKitStuff(Player player) {
         player.getInventory().setItem(2, new ItemManager(Material.BARREL, 1).setDisplayName(I18n.format(player, "game.item.votekit", OneVsOne.getInstance().getPrefix())).build());
         timeGame.getPlayerKit().put(player, "Voting...");
+
+        if (Bukkit.getOnlinePlayers().size() == 1 && !top3) {
+            new Top3Module(timeGame, "1vs1");
+            top3 = true;
+        }
     }
 
     @Override
