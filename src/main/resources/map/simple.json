@@ -1,0 +1,14 @@
+{
+  "mapWorld": "simple",
+  "mapMaterial": "BARRIER",
+  "mapBuilder": "ByRaudy",
+  "team0.x": 0.5,
+  "team0.y": 66,
+  "team0.z": -8.7,
+  "team0.yaw": -0.6,
+  "team1.x": 0.5,
+  "team1.y": 34.0,
+  "team1.z": 9.7,
+  "team1.yaw": -7179.2,
+  "namewithcolor": "§bSimple"
+}
