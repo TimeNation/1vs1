@@ -42,7 +42,7 @@ public class PlayerDeathListener implements Listener {
         int crystals = ThreadLocalRandom.current().nextInt(50, 75);
         killer.sendTitle(I18n.format(killer, "game.title.win.top"), I18n.format(player, "game.title.win.top"));
         killer.sendMessage(I18n.format(killer, OneVsOne.getInstance().getPrefix(), "game.messages.playerhaswongame", crystals));
-        var timePlayer = TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(player);
+        var timePlayer = TimeSpigotAPI.getInstance().getTimePlayerManager().getTimePlayer(killer);
         timePlayer.setCrystals(timePlayer.getCrystals() + crystals);
         TimeSpigotAPI.getInstance().getTimePlayerManager().updateTimePlayer(timePlayer);
 
